@@ -1,12 +1,13 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const userRouter = require("./Routes/UserRoute");
 const app = express();
 dotenv.config();
 
-app.get("/", (req, res) => {
-  res.send("Hello, world!");
-});
+app.use(express.json());
+
+app.use("/api/user", userRouter);
 
 mongoose
   .connect(process.env.MONGODB_URI)
