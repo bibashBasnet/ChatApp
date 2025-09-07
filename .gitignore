@@ -1,0 +1,52 @@
+# === Global Node.js ignores ===
+node_modules/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+.env
+.env.*.local
+.DS_Store
+Thumbs.db
+
+# === IDEs & Editor settings ===
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# === OS-specific ===
+*.DS_Store
+*.Thumbs.db
+
+# === Build & Coverage output ===
+dist/
+build/
+coverage/
+dump/
+tmp/
+.cache/
+.next/
+.nuxt/
+
+# === chat-app-frontend specific ignores ===
+chat-app-frontend/node_modules/
+chat-app-frontend/.env
+chat-app-frontend/.env.*.local
+chat-app-frontend/.next/
+chat-app-frontend/.nuxt/
+chat-app-frontend/.cache/
+chat-app-frontend/build/
+chat-app-frontend/dist/
+
+# === chat-app-backend specific ignores ===
+chat-app-backend/node_modules/
+chat-app-backend/.env
+chat-app-backend/.env.*.local
+chat-app-backend/logs/
+chat-app-backend/tmp/
+chat-app-backend/coverage/
+chat-app-backend/build/
+chat-app-backend/dist/
