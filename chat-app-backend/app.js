@@ -2,12 +2,15 @@ const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const userRouter = require("./Routes/UserRoute");
+const messageRouter = require("./Routes/MessageRoute");
+
 const app = express();
 dotenv.config();
 
 app.use(express.json());
 
 app.use("/api/user", userRouter);
+app.use("/api/message", messageRouter);
 
 mongoose
   .connect(process.env.MONGODB_URI)
