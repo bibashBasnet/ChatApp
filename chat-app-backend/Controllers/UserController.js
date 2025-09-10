@@ -33,8 +33,6 @@ exports.login = async (req, res) => {
 
     const valid = await bcrypt.compare(password, user.password);
 
-    console.log("Password valid?", valid);
-
     if (!valid) {
       return res.status(401).json({ message: "Incorrect password" });
     }

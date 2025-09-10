@@ -3,9 +3,19 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const userRouter = require("./Routes/UserRoute");
 const messageRouter = require("./Routes/MessageRoute");
+const cors = require("cors");
 
 const app = express();
 dotenv.config();
+
+app.use(
+  cors({
+    origin: "*",
+    credentials: false,
+    methods: ["GET", "POST", "PATCH", "DELETE", "PUT", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.use(express.json());
 
