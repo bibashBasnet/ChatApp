@@ -80,7 +80,7 @@ const RegistrationPage = () => {
             />
             <button
               onClick={() => setShow(!show)}
-              className="absolute right-5 top-1/2 mt-4 mr-103 translate-y-1/2 text-gray-600 "
+              className="absolute right-6  top-[49vh] mr-120 text-gray-600 "
             >
               {show ? "🙈" : "👁️"}
             </button>
@@ -99,7 +99,7 @@ const RegistrationPage = () => {
             />
             <button
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-5 top-1/2 mt-16 mr-103 translate-y-1/2 text-gray-600 "
+              className="absolute right-6  top-[56vh] mr-120 text-gray-600 "
             >
               {showPassword ? "🙈" : "👁️"}
             </button>

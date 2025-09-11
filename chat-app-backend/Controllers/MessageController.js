@@ -12,6 +12,7 @@ exports.createMessage = async (req, res) => {
 };
 
 exports.getMessage = async (req, res) => {
+  console.log("Api body", req.body);
   const { sender, receiver } = req.body;
   try {
     const messages = await MessageModel.find({

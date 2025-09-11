@@ -55,3 +55,13 @@ exports.getAllUser = async (req, res) => {
     return res.status(500).json({ error: e.message });
   }
 };
+
+exports.getUserById = async (req, res) => {
+  try {
+    const { id } = req.user;
+    const user = await UserModel.findById(id).select("_id fullname");
+    return res.status(201).json(user);
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
+};

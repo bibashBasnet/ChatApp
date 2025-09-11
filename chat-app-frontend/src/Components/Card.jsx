@@ -13,7 +13,7 @@ const Card = ({ text, from }) => {
           from === "user" ? "hover:text-xl" : ""
         } ${
           click
-            ? "focus:outline-none focus:ring-2 focus:ring-blue-400 rounded"
+            ? "focus:outline-none focus:ring-2 focus:ring-blue-400 focus:text-xl rounded"
             : ""
         }`}
         onClick={handleClick}
