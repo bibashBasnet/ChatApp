@@ -1,7 +1,9 @@
 const MessageModel = require("../Models/MessageModel");
 
 exports.createMessage = async (req, res) => {
-  const { message, sender, receiver } = req.body;
+  const { message, receiver } = req.body;
+  const { id } = req.user;
+  const sender = id;
   try {
     const newMessage = new MessageModel({ message, sender, receiver });
     newMessage.save();
@@ -12,8 +14,9 @@ exports.createMessage = async (req, res) => {
 };
 
 exports.getMessage = async (req, res) => {
-  console.log("Api body", req.body);
-  const { sender, receiver } = req.body;
+  const { receiver } = req.body;
+  const { id } = req.user;
+  const sender = id;
   try {
     const messages = await MessageModel.find({
       $or: [

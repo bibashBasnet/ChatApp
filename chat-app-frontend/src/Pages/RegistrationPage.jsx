@@ -29,7 +29,7 @@ const RegistrationPage = () => {
     try {
       const res = await Signup(payload);
       alert(res.message);
-      navigate("/signin");
+      navigate("/");
     } catch (e) {
       alert(e.response.data.message);
     }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Card from "../Components/Card";
 import { useNavigate } from "react-router-dom";
 import { getAllUser } from "../Services/UserService";
+import { createMessage, getMessage } from "../Services/MessageService";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -9,20 +10,8 @@ const HomePage = () => {
   const [text, setText] = useState("");
   const [id, setId] = useState("1");
   const [users, setUser] = useState([]);
-  const [messages, setMessage] = useState([
-    { id: "1", message: "Hikkkkkkkkkkkkkkkkkk", sender: "1", receiver: "2" },
-    { id: "2", message: "hello", sender: "2", receiver: "1" },
-    { id: "3", message: "Hi", sender: "1", receiver: "2" },
-    { id: "4", message: "hello", sender: "2", receiver: "1" },
-    { id: "5", message: "Hi", sender: "1", receiver: "2" },
-    { id: "6", message: "hello", sender: "2", receiver: "1" },
-    { id: "7", message: "Hi", sender: "1", receiver: "2" },
-    { id: "8", message: "hello", sender: "2", receiver: "1" },
-    { id: "9", message: "Hi", sender: "1", receiver: "2" },
-    { id: "10", message: "hello", sender: "2", receiver: "1" },
-    { id: "11", message: "Hi", sender: "1", receiver: "2" },
-    { id: "12", message: "hello", sender: "2", receiver: "1" },
-  ]);
+  const [messages, setMessage] = useState([]);
+  const [selectedUser, setSelectedUser] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,13 +25,38 @@ const HomePage = () => {
     fetchData();
   }, []);
 
-  const handleSubmit = async () => {};
+  const handleSubmit = async () => {
+    const payload = {
+      receiver: selectedUser._id,
+      message: text,
+    };
+    try {
+      const res = await createMessage(payload);
+      console.log("Response = ", res.data.message);
+    } catch (e) {
+      console.log("error: ", e);
+    }
+  };
+
+  const handleSelect = async (user) => {
+    setSelectedUser(user);
+    const payload = {
+      receiver: user._id,
+    };
+    try {
+      const res = await getMessage(payload);
+      console.log("messages = ", JSON.stringify(res.data.messages, null, 2));
+    } catch (e) {
+      alert(e);
+      console.log("error", e);
+    }
+  };
 
   const handleClick = async () => {
     const confirm = window.confirm("Are you sure you want to log out?");
     if (confirm) {
       localStorage.removeItem("token");
-      navigate("/signin");
+      navigate("/");
     }
   };
 
@@ -59,7 +73,12 @@ const HomePage = () => {
           </div>
           <div className="h-[70vh]">
             {users.map((user) => (
-              <div key={user._id}>
+              <div
+                key={user._id}
+                onClick={() => {
+                  handleSelect(user);
+                }}
+              >
                 <Card text={user.fullname} from="user" />
               </div>
             ))}

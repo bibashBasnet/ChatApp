@@ -19,7 +19,7 @@ const LoginPage = () => {
     try {
       const res = await Signin(payload);
       localStorage.setItem("token", res.token);
-      navigate("/");
+      navigate("/home");
     } catch (e) {
       alert(e.response.data.message);
     }
